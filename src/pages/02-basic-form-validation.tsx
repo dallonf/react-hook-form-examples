@@ -9,7 +9,7 @@ interface FormState {
   favoriteFood: string;
 }
 
-export default function BasicFormPage() {
+export default function BasicFormWithValidation() {
   const [formState, setFormState] = useState<FormState>({
     email: "",
     favoriteFood: "",

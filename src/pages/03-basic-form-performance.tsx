@@ -8,7 +8,7 @@ interface FormState {
   favoriteFood: string;
 }
 
-export default function BasicFormPage() {
+export default function BasicFormWithPerformanceProblem() {
   const [formState, setFormState] = useState<FormState>({
     email: "",
     favoriteFood: "",

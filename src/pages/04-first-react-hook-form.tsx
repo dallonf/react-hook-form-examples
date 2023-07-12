@@ -7,13 +7,8 @@ interface FormState {
   favoriteFood: string;
 }
 
-export default function BasicFormPage() {
-  const {
-    register,
-    handleSubmit,
-    errors: otherErrors,
-    formState: { errors },
-  } = useForm<FormState>();
+export default function BasicReactHookForm() {
+  const { register, handleSubmit } = useForm<FormState>();
   const onSubmit: SubmitHandler<FormState> = (data) => {
     return alert(JSON.stringify(data, null, 2));
   };
