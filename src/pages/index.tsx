@@ -4,12 +4,11 @@ import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 export const getServerSideProps: GetServerSideProps<{
   pages: string[];
 }> = async () => {
-  const siblings = await fs.readdir(__dirname);
-  console.log(siblings);
-  const pages = siblings.filter((s) => s.match(/^[0-9]{2}-.+.js$/));
+  const siblings = await fs.readdir("./src/pages");
+  const pages = siblings.filter((s) => s.match(/^[0-9]{2}-.+.tsx$/));
   return {
     props: {
-      pages: pages.map((p) => p.replace(/\.js$/, "")),
+      pages: pages.map((p) => p.replace(/\.tsx$/, "")),
     },
   };
 };
