@@ -1,5 +1,6 @@
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
+import { EMAIL_REGEX } from "@/utils/validation";
 import clsx from "clsx";
 import { useState } from "react";
 
@@ -7,8 +8,6 @@ interface FormState {
   email: string;
   favoriteFood: string;
 }
-
-const EMAIL_REGEX = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
 export default function BasicFormPage() {
   const [formState, setFormState] = useState<FormState>({
