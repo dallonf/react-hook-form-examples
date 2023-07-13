@@ -19,7 +19,7 @@ export default function BasicReactHookForm() {
         <label htmlFor="email" className="mr-3">
           Email
         </label>
-        <Input type="text" id="email" name="email" ref={register} />
+        <Input type="text" id="email" name="email" ref={register()} />
         <br />
         <label htmlFor="favoriteFood" className="mr-3">
           Favorite Food
@@ -28,7 +28,7 @@ export default function BasicReactHookForm() {
           type="text"
           id="favoriteFood"
           name="favoriteFood"
-          ref={register}
+          ref={register()}
         />
         <br />
         <Button type="submit">Submit</Button>
