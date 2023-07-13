@@ -29,7 +29,7 @@ export default function WatchDemo() {
             valueAsNumber: true,
           })}
         />
-        {age > 21 && (
+        {age >= 21 && (
           <>
             <br />
             <label htmlFor="favoriteDrink" className="mr-3">
@@ -39,7 +39,7 @@ export default function WatchDemo() {
               type="text"
               id="favoriteDrink"
               name="favoriteDrink"
-              ref={register}
+              ref={register()}
             />
           </>
         )}
