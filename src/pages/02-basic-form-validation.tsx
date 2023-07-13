@@ -4,26 +4,23 @@ import { EMAIL_REGEX } from "@/utils/validation";
 import clsx from "clsx";
 import { useState } from "react";
 
-interface FormState {
-  email: string;
-  favoriteFood: string;
-}
-
 export default function BasicFormWithValidation() {
-  const [formState, setFormState] = useState<FormState>({
-    email: "",
-    favoriteFood: "",
-  });
+  const [email, setEmail] = useState("");
+  const [favoriteFood, setFavoriteFood] = useState("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const formState = {
+      email,
+      favoriteFood,
+    };
     alert(JSON.stringify(formState, null, 2));
   };
 
   let emailError: string | undefined = undefined;
-  if (!formState.email.length) {
+  if (!email.length) {
     emailError = "Email is required";
-  } else if (formState.email.match(EMAIL_REGEX) === null) {
+  } else if (email.match(EMAIL_REGEX) === null) {
     emailError = "Email must be a valid format";
   }
 
@@ -42,10 +39,8 @@ export default function BasicFormWithValidation() {
           type="text"
           id="email"
           errorState={Boolean(emailError)}
-          value={formState.email}
-          onChange={(e) =>
-            setFormState((prev) => ({ ...prev, email: e.target.value }))
-          }
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         {emailError && <span className="text-red-500 ml-2">{emailError}</span>}
         <br />
@@ -55,10 +50,8 @@ export default function BasicFormWithValidation() {
         <Input
           type="text"
           id="favoriteFood"
-          value={formState.favoriteFood}
-          onChange={(e) =>
-            setFormState((prev) => ({ ...prev, favoriteFood: e.target.value }))
-          }
+          value={favoriteFood}
+          onChange={(e) => setFavoriteFood(e.target.value)}
         />
         <br />
         <Button type="submit">Submit</Button>

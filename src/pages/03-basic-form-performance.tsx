@@ -3,19 +3,16 @@ import { Input } from "@/components/Input";
 import { findFirstNPrimes } from "@/utils/primes";
 import { useState } from "react";
 
-interface FormState {
-  email: string;
-  favoriteFood: string;
-}
-
 export default function BasicFormWithPerformanceProblem() {
-  const [formState, setFormState] = useState<FormState>({
-    email: "",
-    favoriteFood: "",
-  });
+  const [email, setEmail] = useState("");
+  const [favoriteFood, setFavoriteFood] = useState("");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const formState = {
+      email,
+      favoriteFood,
+    };
     alert(JSON.stringify(formState, null, 2));
   };
 
@@ -30,10 +27,8 @@ export default function BasicFormWithPerformanceProblem() {
         <Input
           type="text"
           id="email"
-          value={formState.email}
-          onChange={(e) =>
-            setFormState((prev) => ({ ...prev, email: e.target.value }))
-          }
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <br />
         <label htmlFor="favoriteFood" className="mr-3">
@@ -42,10 +37,8 @@ export default function BasicFormWithPerformanceProblem() {
         <Input
           type="text"
           id="favoriteFood"
-          value={formState.favoriteFood}
-          onChange={(e) =>
-            setFormState((prev) => ({ ...prev, favoriteFood: e.target.value }))
-          }
+          value={favoriteFood}
+          onChange={(e) => setFavoriteFood(e.target.value)}
         />
         <br />
         <Button type="submit">Submit</Button>
