@@ -53,7 +53,7 @@ export default function ReactHookFormStressTest() {
           type="text"
           id="favoriteFood"
           name="favoriteFood"
-          ref={register}
+          ref={register()}
         />
         <br />
         <Button type="submit">Submit</Button>
