@@ -77,14 +77,7 @@ export default function NestedForms() {
         >
           Preferences
         </label>
-        {!isEditingPreferences && (
-          <PreferencesReadOnly
-            food={preferences?.food}
-            drink={preferences?.drink}
-            onEdit={() => setValue("editingPreferences", true)}
-          />
-        )}
-        {isEditingPreferences && (
+        {isEditingPreferences ? (
           <PreferencesForm
             currentPreferences={preferences}
             onSave={(preferences) => {
@@ -92,6 +85,12 @@ export default function NestedForms() {
               setValue("editingPreferences", false);
             }}
             onCancel={() => setValue("editingPreferences", false)}
+          />
+        ) : (
+          <PreferencesReadOnly
+            food={preferences?.food}
+            drink={preferences?.drink}
+            onEdit={() => setValue("editingPreferences", true)}
           />
         )}
         {preferencesError && (
@@ -155,13 +154,14 @@ export function PreferencesForm(props: {
     }
   };
 
+  const formId = "preferencesForm";
   return (
     <>
       {createPortal(
-        // Forms can't be nested, so mount the form outside the document
-        // and use `form="preferencesForm"` on the inputs to associate them
+        // HTML forms can't be nested, so mount the form outside the document
+        // and use `form={formId}` on the inputs to associate them
         <form
-          id="preferencesForm"
+          id={formId}
           onSubmit={(e) => {
             e.stopPropagation();
             return handleSubmit(onSubmit)(e);
@@ -181,7 +181,7 @@ export function PreferencesForm(props: {
         <Input
           type="text"
           id="food"
-          form="preferencesForm"
+          form={formId}
           name="food"
           errorState={Boolean(errors.food)}
           ref={register({ required: true })}
@@ -201,7 +201,7 @@ export function PreferencesForm(props: {
         <Input
           type="text"
           id="drink"
-          form="preferencesForm"
+          form={formId}
           name="drink"
           errorState={Boolean(errors.drink)}
           ref={register({ required: true })}
@@ -210,7 +210,7 @@ export function PreferencesForm(props: {
           <span className="text-red-500 ml-2">Required</span>
         )}
         <br />
-        <Button type="submit" form="preferencesForm">
+        <Button type="submit" form={formId}>
           Save
         </Button>
         <button type="button" onClick={props.onCancel} className="ml-3">
