@@ -5,19 +5,18 @@ import * as React from "react";
 import { createPortal } from "react-dom";
 import { NestedValue, SubmitHandler, useForm } from "react-hook-form";
 
-interface Preferences {
+// For some reason, as an interface,
+// it can't be used as a generic argument to NestedValue.
+// I have no idea why that would be.
+type Preferences = {
   food: string;
   drink: string;
-}
+};
 
 interface OuterFormState {
   name?: string;
   editingPreferences?: boolean;
-  preferences?: NestedValue<{
-    // I don't understand why TypeScript fails at just
-    // NestedValue<Preferences>
-    [K in keyof Preferences]: Preferences[K];
-  }>;
+  preferences?: NestedValue<Preferences>;
 }
 
 export default function NestedForms() {
