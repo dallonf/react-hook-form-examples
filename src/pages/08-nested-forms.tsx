@@ -7,7 +7,8 @@ import { NestedValue, SubmitHandler, useForm } from "react-hook-form";
 
 // For some reason, as an interface,
 // it can't be used as a generic argument to NestedValue.
-// I have no idea why that would be.
+// Some sort of TypeScript shenanigans I don't fully understand:
+// https://github.com/react-hook-form/react-hook-form/issues/3181#issuecomment-709401273
 type Preferences = {
   food: string;
   drink: string;
