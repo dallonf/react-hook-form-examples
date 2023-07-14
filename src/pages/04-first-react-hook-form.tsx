@@ -3,8 +3,8 @@ import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 
 interface FormState {
-  email: string;
-  favoriteFood: string;
+  email?: string;
+  favoriteFood?: string;
 }
 
 export default function BasicReactHookForm() {
