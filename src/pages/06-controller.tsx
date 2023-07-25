@@ -27,7 +27,7 @@ export default function ControllerDemo() {
               id="favoriteFood"
               name={props.name}
               ref={props.ref}
-              value={props.value}
+              value={props.value ?? ""}
               onChange={props.onChange}
               onBlur={props.onBlur}
               // or {...props}
